@@ -1,0 +1,70 @@
+
+/* Common Grid Item Styles */
+.header,
+.main,
+.sidebar,
+.footer {
+  border-radius: 0.5em;
+}
+
+.header {
+  grid-area: header;
+}
+
+.main-view {
+  grid-area: main;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.dashboard-container {
+  margin: 1rem;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 10% auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "sidebar header header header"
+    "sidebar main main main"
+    "sidebar footer footer footer";
+}
+
+/* HEADER Area: Styles */
+
+/* SIDEBAR Area: Styles */
+
+/* MAIN Area: Styles*/
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+/* FOOTER: Table Styles */
+
+/* MEDIA QUERY */
+
+@media only screen and (max-width: 1900px) {
+  .main {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
