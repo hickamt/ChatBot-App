@@ -1,0 +1,6 @@
+.game {
+  width: 100%;
+  height: auto;
+  background-color: rgba(79, 42, 36, 0.575);
+  border: 1px solid var(--white);
+}

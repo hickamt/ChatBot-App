@@ -1,3 +1,4 @@
+import Game from "../../game/Game";
 import MistralMessages from "./sub_compt/MistralMessages";
 import "../../styles/message_field.css";
 
@@ -8,11 +9,7 @@ function MistralAI() {
     <>
       <h1 className="message-title">MistralAI | Chat Abot Anything</h1>
       <div className="message-main">
-        <div className="game rounded">
-          <p className="temp-text text-center mt-5 fs-3 fw-bold">
-            Some Game Shit Goes Here
-          </p>
-        </div>
+        <Game />
         <MistralMessages />
       </div>
     </>
