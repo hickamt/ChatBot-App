@@ -1,11 +1,7 @@
 function Game() {
-  return (
-    <div className="game rounded">
-      <p className="temp-text text-center mt-5 fs-3 fw-bold">
-        Some Game Shit Goes Here
-      </p>
-    </div>
-  );
+  const canvas = <canvas id="game-canvas" width="800" height="600"></canvas>;
+
+  return <div className="game rounded">{canvas}</div>;
 }
 
 export default Game;
