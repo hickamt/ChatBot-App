@@ -1,11 +1,10 @@
-import Game from "../game/Game";
-import "../styles/game.css"
+import MistralAI from "../components/mistralai/MistralAI";
 
 function Main() {
   return (
     <>
       <div className="landingpage-container mt-3 w-75">
-        <Game />
+          <MistralAI />
       </div>
     </>
   );

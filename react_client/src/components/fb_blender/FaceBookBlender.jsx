@@ -1,4 +1,3 @@
-import Game from "../../game/Game";
 import BlenderMessages from "./sub_compt/BlenderMessages";
 import "../../styles/message_field.css";
 
@@ -9,7 +8,6 @@ function FaceBookBlenderMessages() {
     <>
       <h1 className="message-title">FB Blender | Chat Abot Anything</h1>
       <div className="message-main">
-        <Game />
         <BlenderMessages />
       </div>
     </>

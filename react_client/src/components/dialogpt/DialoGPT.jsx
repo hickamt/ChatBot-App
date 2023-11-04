@@ -1,4 +1,3 @@
-import Game from "../../game/Game";
 import DialoMessages from "./sub_compt/DialoMessages";
 import "../../styles/message_field.css";
 
@@ -10,7 +9,6 @@ function DialoGPT() {
     <>
       <h1 className="message-title">DialoGPT | Chat Abot Anything</h1>
       <div className="message-main">
-        <Game />
         <DialoMessages />
       </div>
     </>

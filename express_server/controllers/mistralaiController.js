@@ -1,8 +1,7 @@
 /**
  * Mistralai LLM: "A instruct fine-tuned version of the Mistral-7B-v0.1 generative text model"
- * Leverage fine-tuning by using a prompt surrounded by:
- *   const myPrompt = "<s>[INST] my message or text here, surrounded by [/INST]"
  * - HuggingFace Docs: https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1
+ * - MistralAI Docs: https://docs.mistral.ai/
  */
 
 // const fs = require("fs"); // could use this to log the conversations
@@ -27,12 +26,15 @@ const postQuery = async (req, res) => {
     method: "POST",
     body: JSON.stringify({
       inputs: prompt,
-      options: {
-        padding_side: "left",
-        max_new_tokens: 800,
-        do_sample: true,
-        attention_mask: [1],
-      },
+      max_tokens: 1000,
+      stop: ".",
+      // options: {
+      //   padding_side: "left",
+      //   max_new_tokens: 800,
+      //   min_new_tokens: 50,
+      //   do_sample: true,
+      //   attention_mask: [1],
+      // },
     }),
   });
   const result = await response.json();
