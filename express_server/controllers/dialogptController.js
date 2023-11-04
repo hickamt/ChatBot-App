@@ -19,6 +19,7 @@ const postQuery = async (req, res) => {
   const prompt = req.body.data.query; // this will be an array object
   await tokenValidation(prompt);
 
+  console.log("DialoGPT Prompt: ", prompt);
   const response = await fetch(DIALOGPT_URL, {
     headers: {
       "Content-Type": "application/json",
@@ -36,6 +37,7 @@ const postQuery = async (req, res) => {
     }),
   });
   const result = await response.json();
+  console.log("DialoGPT result: ", result);
   return res.status(200).json(result);
 };
 

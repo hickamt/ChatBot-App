@@ -18,7 +18,6 @@ async function mistralAPI(prompt, setMessageHistory, setIsData) {
         query: prompt,
       },
     });
-    console.log("MistralAI Server Response: ", response);
     setMessageHistory((prev) => [...prev, prompt, response.data]);
     setIsData(true);
   } catch (error) {

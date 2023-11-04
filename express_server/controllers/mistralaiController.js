@@ -29,13 +29,14 @@ const postQuery = async (req, res) => {
       inputs: prompt,
       options: {
         padding_side: "left",
-        max_new_tokens: 300,
-        // attention_mask: [1],
+        max_new_tokens: 800,
+        do_sample: true,
+        attention_mask: [1],
       },
     }),
   });
   const result = await response.json();
-  console.log("MistralAI Express Result: ", result[0].generated_text);
+  console.log("MistralAI Express Result: ", result);
   const filteredResponse = mistralResponse(prompt, result);
   return res.status(200).json(filteredResponse);
 };

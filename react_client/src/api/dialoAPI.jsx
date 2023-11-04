@@ -18,7 +18,6 @@ async function dialoAPI(prompt, setMessageHistory, setIsData) {
         query: [...prompt],
       },
     });
-    console.log("DialoAPI Server Response: ", response.data.generated_text);
     setMessageHistory((prev) => [...prev, prompt, response.data.generated_text]);
     setIsData(true);
   } catch (error) {

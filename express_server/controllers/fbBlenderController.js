@@ -16,7 +16,7 @@ const API_TOKEN = process.env.HUGGINGFACE_API_TOKEN;
 // Mistralai Controller
 const postQuery = async (req, res) => {
   const prompt = req.body.data.query; // this will be an array object
-  console.log("Blender Prompt: ", prompt);
+  console.log("FB Blender Prompt: ", prompt);
   await tokenValidation(prompt);
 
   const response = await fetch(fbBlenderURL, {

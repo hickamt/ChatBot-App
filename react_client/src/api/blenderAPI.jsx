@@ -18,7 +18,6 @@ async function blenderAPI(prompt, setMessageHistory, setIsData) {
         query: prompt,
       },
     });
-    console.log("FB Blender Server Response: ", response.data.generated_text);
     setMessageHistory((prev) => [...prev, prompt, response.data.generated_text]);
     setIsData(true);
   } catch (error) {
