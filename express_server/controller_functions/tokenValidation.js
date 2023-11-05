@@ -8,7 +8,7 @@ const tokenValidation = async function dialogGPTTokenValidation(prompts) {
     const tokens = await tokenizer.tokenize(prompt);
     totalTokens += tokens.length;
   }
-  console.log("Total Tokens: ", totalTokens)
+  console.log("Total Tokens for Prompt (", totalTokens, ")")
   return totalTokens;
 }
 
