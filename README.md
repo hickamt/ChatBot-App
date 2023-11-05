@@ -54,8 +54,9 @@ This application uses the [Huggingface API in the Express Server](https://huggin
 - [Huggingface API Token (get API Token)](https://huggingface.co/settings/tokens)
 
 ```js
-// Name your api token in the .env as follows
-HUGGINGFACE_API_TOKEN = "apiTokenBetweenDoubleQuotes";
+// Name your api token in the .env as follows 
+// (remove the ending " ; " semi-colon if Prettier has appended it)
+HUGGINGFACE_API_TOKEN = "apiTokenBetweenDoubleQuotes"
 ```
 
 ## Run Developer Mode
