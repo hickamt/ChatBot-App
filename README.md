@@ -1,8 +1,10 @@
-github https: https://github.com/hickamt/React-Express-Template.git
+# Huggingface Chatbot Application
 
-# React / Express Application Template
+This application is a basic proof of concept using multiple large language models (LLM's) to communicate in a web environment.
 
-Quickly set up a React application with a basic ExpressJS server.
+You will need one unique `API_TOKEN` from [Huggingface Home Page](https://huggingface.co/) to utilize them all. Create a free read only token from settings.
+
+Huggingface will limit the free token to a number of calls per hour. I have not found the exact number of tokens or calls per hour in their docs but if the application stops working you should look for a `status code 429`.
 
 ## Clone Repository
 
