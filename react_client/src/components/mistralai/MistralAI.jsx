@@ -1,5 +1,5 @@
 import MistralMessages from "./sub_compt/MistralMessages";
-import "../../styles/message_field.css";
+import "../../styles/messages.css";
 
 function MistralAI() {
   document.getElementById("root").style.backgroundImage =
