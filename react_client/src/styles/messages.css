@@ -19,8 +19,7 @@
   flex-direction: column;
   border: 1px solid var(--white);
   border-radius: 0.5rem;
-  background-color: rgba(33, 37, 41, 0.85);
-  /* background-color: rgba(79, 42, 36, 0.575); */
+  /* background-color: rgba(33, 37, 41, 0.90); */
 }
 
 .messages-div {
@@ -29,8 +28,12 @@
 }
 
 textarea {
+  min-width: 70%;
+  min-height: 7em;
+  padding: 0.5em;
   background-color: black;
   color: white;
+  border-radius: 0.5em;
 }
 
 .message-container .message .message-text {

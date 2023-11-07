@@ -16,7 +16,7 @@ function Zephyr() {
 
   return (
     <>
-      <h1 className="message-title">Zephyr | Chat Abot Anything</h1>
+      <h1 className="message-title">Zephyr</h1>
       <div className="message-main">
         <Messages
           isData={isData}

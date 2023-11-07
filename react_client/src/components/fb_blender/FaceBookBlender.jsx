@@ -16,7 +16,7 @@ function FaceBookBlenderMessages() {
   };
   return (
     <>
-      <h1 className="message-title">FB Blender | Chat Abot Anything</h1>
+      <h1 className="message-title">FB Blender</h1>
       <div className="message-main">
         <Messages
           isData={isData}

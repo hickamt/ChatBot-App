@@ -17,7 +17,7 @@ function DialoGPT() {
 
   return (
     <>
-      <h1 className="message-title">DialoGPT | Chat Abot Anything</h1>
+      <h1 className="message-title">DialoGPT</h1>
       <div className="message-main">
         <Messages
           isData={isData}
