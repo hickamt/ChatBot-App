@@ -52,20 +52,19 @@ const BlenderMessages = function TextMessageField() {
       </main>
       <form action="" onSubmit={(e) => handleInputSubmit(e)}>
         <label htmlFor="prompt-input" className="input-label"></label>
-        <input
-          id="prompt-input"
-          type="text"
+        <textarea
           value={formValue}
-          placeholder="Let's chat! . . ."
-          onChange={(e) => setFormValue(e.target.value)}
-        />
-        <button type="submit">Submit</button>
+          placeholder="Let's chat! ..."
+          id="prompt-input"
+          rows="2"
+          cols="30"
+          onChange={(e) => setFormValue(e.target.value)}></textarea>
+        <div className="btn-div d-flex flex-column mx-auto w-25">
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );
 };
 
 export default BlenderMessages;
-
-
-

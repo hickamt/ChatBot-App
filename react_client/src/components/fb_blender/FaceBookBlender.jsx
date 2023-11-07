@@ -1,9 +1,10 @@
 import BlenderMessages from "./sub_compt/BlenderMessages";
-import "../../styles/message_field.css";
+import "../../styles/messages.css"
 
 function FaceBookBlenderMessages() {
   document.getElementById("root").style.backgroundImage =
-  "url(https://wallpapercave.com/wp/wp2316798.jpg)"
+  "url(https://www.wallpapertip.com/wmimgs/99-994369_artificial-intelligence-wallpaper-1080p.jpg)"
+  // "url(https://wallpapercave.com/wp/wp2316798.jpg)"
     // "url(https://i.pinimg.com/originals/45/90/67/4590676926a11158e2bb5b087d881f34.gif)";
   return (
     <>

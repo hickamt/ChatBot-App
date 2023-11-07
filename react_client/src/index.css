@@ -16,7 +16,7 @@
   --danger: #dc3545;
   --success: #28a745;
   --off_black: #090909;
-  --nav_grey: #212529;
+  --nav_grey: rgb(33, 37, 41);
   --white: #f0f0f0;
   --light_blue: #bcf4f7;
   --slate_grey: #778899;
@@ -25,9 +25,11 @@
 }
 
 #root {
-  /* background-image: url("https://4.bp.blogspot.com/-M822bdvixLs/UupGZLdmbVI/AAAAAAAAP14/fRpx2goM8kQ/s1600/sprite+background+mugen+0071.gif"); */
   /* background-image: url("https://1.bp.blogspot.com/-dRoOAUqWNmg/UupI4Y3LngI/AAAAAAAAP5c/QFHzclGY1D8/s1600/sprite+background+mugen+0043.gif"); */
-  background-image: url("https://wallpapercave.com/wp/wp6397784.jpg");
+  /* background-image: url("https://wallpapercave.com/wp/wp6397784.jpg"); */
+  background-image: url("https://wallpapercave.com/wp/wp4063812.png");
+  
+
   background-size: cover;
   /* padding-bottom: 7em; */
   min-height: 65em;
@@ -36,7 +38,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--off_black);
+  background-color: black;
   background-repeat: no-repeat;
   color: var(--white);
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
