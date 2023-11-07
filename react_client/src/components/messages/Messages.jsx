@@ -1,5 +1,4 @@
-import { useState } from "react";
-import "./styles/messages.css"
+import "../../styles/messages.css"
 
 // eslint-disable-next-line react/prop-types
 const ChatMessage = function CreateChatMessage({ text, classtitle }) {
@@ -28,13 +27,13 @@ const Messages = function TextMessageField({
   formValue,
   handleInputSubmit,
   setFormValue,
-  dialoHistory,
+  initialMessage,
 }) {
   return (
     <div className="message-container">
       <main className="messages">
         <div className="messages-div">
-          <ChatMessage text={dialoHistory} classtitle={"user"} />
+          <ChatMessage text={initialMessage} classtitle={"user"} />
           {isData &&
             messageHistory &&
             messageHistory.map((msg, index) => (

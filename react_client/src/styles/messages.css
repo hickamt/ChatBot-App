@@ -19,7 +19,7 @@
   flex-direction: column;
   border: 1px solid var(--white);
   border-radius: 0.5rem;
-  background-color: rgba(33, 37, 41, 0.85)
+  background-color: rgba(33, 37, 41, 0.85);
   /* background-color: rgba(79, 42, 36, 0.575); */
 }
 
