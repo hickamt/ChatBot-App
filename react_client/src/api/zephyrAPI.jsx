@@ -8,9 +8,9 @@ import axios from "axios";
  * @param {*} setIsData is a function to set the boolean value of whether data was returned from the server
  * @param {*} setAnimation is a function to set the boolean value of whether the animation should be displayed
  */
-async function mistralAPI(prompt, setMessageHistory, setIsData) {
+async function zephyrAPI(prompt, setMessageHistory, setIsData) {
   try {
-    const response = await axios.post("http://localhost:5500/mistralai", {
+    const response = await axios.post("http://localhost:5500/zephyr", {
       headers: {
         "Content-Type": "application/json",
       },
@@ -18,15 +18,21 @@ async function mistralAPI(prompt, setMessageHistory, setIsData) {
         query: prompt,
       },
     });
-    console.log("Client Side Response Object: ", response)
-    console.log("Client Side Response.Data: ", response.data)
+    console.log("Client Side Response.Data: ", response.data);
     setMessageHistory((prev) => [...prev, prompt, response.data]);
     setIsData(true);
   } catch (error) {
-    console.error(`Error: unable to fetch prompt: "${prompt}" from the MistralAI Server`, error);
-    setMessageHistory((prev) => [...prev, prompt, "That didn't go as planned. Maybe my server is down."])
+    console.error(
+      `Error: unable to fetch prompt: "${prompt}" from the Zephyr Server`,
+      error
+    );
+    setMessageHistory((prev) => [
+      ...prev,
+      prompt,
+      "That didn't go as planned. Maybe my server is down.",
+    ]);
     setIsData(true);
   }
 }
 
-export default mistralAPI;
+export default zephyrAPI;

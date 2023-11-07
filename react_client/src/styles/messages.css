@@ -28,10 +28,10 @@
   overflow: auto;
 }
 
-/* .message {
-  bottom: 0px;
-  position: absolute;
-} */
+textarea {
+  background-color: black;
+  color: white;
+}
 
 .message-container .message .message-text {
   font-size: 1rem;

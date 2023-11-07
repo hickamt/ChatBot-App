@@ -1,22 +1,22 @@
 import { useState } from "react";
-import { mistralHistory } from "../../prompts/mistralai";
+import {zephyrHistory} from "../../prompts/zephyr"
+import zephyrAPI from "../../api/zephyrAPI";
 import Messages from "../messages/Messages";
-import mistralAPI from "../../api/mistralAPI";
 
-function MistralAI() {
+function Zephyr() {
   const [isData, setIsData] = useState(false); // This is used to determine whether to display the chatbot response
   const [messageHistory, setMessageHistory] = useState([]); // This is used to store the chatbot response
   const [formValue, setFormValue] = useState(""); // user input
 
   const handleInputSubmit = async (e) => {
     e.preventDefault();
-    await mistralAPI(formValue, setMessageHistory, setIsData);
+    await zephyrAPI(formValue, setMessageHistory, setIsData);
     setFormValue("");
   };
 
   return (
     <>
-      <h1 className="message-title">MistralAI | Chat Abot Anything</h1>
+      <h1 className="message-title">Zephyr | Chat Abot Anything</h1>
       <div className="message-main">
         <Messages
           isData={isData}
@@ -24,10 +24,10 @@ function MistralAI() {
           formValue={formValue}
           handleInputSubmit={handleInputSubmit}
           setFormValue={setFormValue}
-          initialMessage={mistralHistory}></Messages>
+          initialMessage={zephyrHistory}></Messages>
       </div>
     </>
   );
 }
 
-export default MistralAI;
+export default Zephyr;

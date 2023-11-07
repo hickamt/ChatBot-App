@@ -18,6 +18,7 @@ app.use("/local_state", require("./routes/local_state"));
 app.use("/dialogpt", require("./routes/dialogpt"));
 app.use("/mistralai", require("./routes/mistralai"));
 app.use("/fb_blender", require("./routes/fb_blender"));
+app.use("/zephyr", require("./routes/zephyr"));
 
 // Catch all for page request errors
 app.all("*", (req, res) => {

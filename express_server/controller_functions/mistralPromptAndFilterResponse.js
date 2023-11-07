@@ -26,14 +26,11 @@ const filterResponse = function mistralResponseFilter(prompt, response) {
  * @param {string} prompt
  * @returns the generated response data string
  */
-const fetchResponse = async function fetchMistralResponseData(prompt) {
+const fetchResponse = async function fetchMistralResponseData(prompt, URL) {
   const API_TOKEN = process.env.HUGGINGFACE_API_TOKEN;
-  const mistralaiAPI =
-    "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-v0.1";
-  // "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.1";
   let filteredResponse = [];
   try {
-    const response = await fetch(mistralaiAPI, {
+    const response = await fetch(URL, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${API_TOKEN}`,
@@ -92,14 +89,15 @@ const isRepeating = function isResponseRepeating(
 // - the number of prompt iterations exceeds 10
 // return the response with the concatenated results
 const fetchMistralResponse = async function continuousFetchResponseGenerator(
-  prompt
+  prompt,
+  URL
 ) {
   const MAX_ITERATIONS = 10;
   let iteration = 0;
   let completedResponse = "";
   // Create the initial response object and validate if a response
   // was generated
-  let response = await fetchResponse(prompt);
+  let response = await fetchResponse(prompt, URL);
   if (!response) {
     completedResponse += "Sorry, the response object was empty";
     return;
@@ -124,7 +122,7 @@ const fetchMistralResponse = async function continuousFetchResponseGenerator(
 
     // concat response before another: fetch(prompt) -> response cycle
     completedResponse += response;
-    response = await fetchResponse(response);
+    response = await fetchResponse(response, URL);
     ++iteration;
 
     // verify that the previousResponse is not the same as this new response string
