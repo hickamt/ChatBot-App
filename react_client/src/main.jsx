@@ -4,6 +4,7 @@ import App from "./App.jsx";
 
 // Global CSS Page Styles
 import "./index.css";
+import "./styles/landing_page.css"
 // import "./styles/main.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
