@@ -1,4 +1,4 @@
-import "../../styles/messages.css"
+import "../../styles/messages.css";
 
 // eslint-disable-next-line react/prop-types
 const ChatMessage = function CreateChatMessage({ text, classtitle }) {
@@ -30,35 +30,37 @@ const Messages = function TextMessageField({
   initialMessage,
 }) {
   return (
-    <div className="message-container">
-      <main className="messages">
-        <div className="messages-div">
-          <ChatMessage text={initialMessage} classtitle={"user"} />
-          {isData &&
-            messageHistory &&
-            messageHistory.map((msg, index) => (
-              <ChatMessage
-                key={index}
-                text={msg}
-                classtitle={filterClassName(index)}
-              />
-            ))}
-        </div>
-      </main>
-      <form action="" onSubmit={(e) => handleInputSubmit(e)}>
-        <label htmlFor="prompt-input" className="input-label"></label>
-        <textarea
-          value={formValue}
-          placeholder="Let's chat! ..."
-          id="prompt-input"
-          rows="2"
-          cols="40"
-          onChange={(e) => setFormValue(e.target.value)}></textarea>
-        <div className="btn-div d-flex flex-column mx-auto w-25">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
+    <pre className="pre-wrap">
+      <div className="message-container">
+        <main className="messages">
+          <div className="messages-div">
+            <ChatMessage text={initialMessage} classtitle={"user"} />
+            {isData &&
+              messageHistory &&
+              messageHistory.map((msg, index) => (
+                <ChatMessage
+                  key={index}
+                  text={msg}
+                  classtitle={filterClassName(index)}
+                />
+              ))}
+          </div>
+        </main>
+        <form action="" onSubmit={(e) => handleInputSubmit(e)}>
+          <label htmlFor="prompt-input" className="input-label"></label>
+          <textarea
+            value={formValue}
+            placeholder="Let's chat! ..."
+            id="prompt-input"
+            rows="2"
+            cols="40"
+            onChange={(e) => setFormValue(e.target.value)}></textarea>
+          <div className="btn-div d-flex flex-column mx-auto w-25">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </pre>
   );
 };
 
