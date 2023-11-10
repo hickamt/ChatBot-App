@@ -9,22 +9,23 @@ import { useState, useEffect } from "react";
 // The Messages component will be used by both chatbots
 import Messages from "../components/messages/Messages";
 
-// Socrates will use the ZephyrAPI to generate responses for Alex
+// Socrates will use the ZephyrAPI to generate responses for Nietzsche
 import zephyrAPI from "../api/zephyrAPI";
-import { socratesBackground } from "./personas/Socrates";
+import { socratesPersona } from "./personas/Socrates";
 
-// Alex will use the MystralAI API to generate responses for Socrates
+// Nietzsche will use the MystralAI API to generate responses for Socrates
 import mistralAPI from "../api/mistralAPI";
-import { alexBackground } from "./personas/Alex";
+// import { nietzschePersona } from "./personas/Nietzsche";
 
 function GenAI() {
   const [isSocratesData, setisSocratesData] = useState(false); // This is used to determine whether to display the chatbot response
   const [SocratesMessage, setSocratesMessage] = useState([]); // This is used to store the chatbot response
   const [SocratesUserInput, setSocratesUserInput] = useState(""); // user input
 
-  const [isAlexData, setIsAlexData] = useState(false); // This is used to determine whether to display the chatbot response
-  const [alexMessage, setAlexMessage] = useState([]); // This is used to store the chatbot response
-  const [alexUserInput, setAlexUserInput] = useState(""); // user input
+  const [isNietzscheData, setIsNietzscheData] = useState(false); // This is used to determine whether to display the chatbot response
+  const [nietzscheMessage, setNietzscheMessage] = useState([]); // This is used to store the chatbot response
+  const [nietzscheUserInput, setNietzscheUserInput] = useState(""); // user input
+  const [isFirstIntro, setIsFirstIntro] = useState(true); // This is used to display the introduction only once for Nietzsche
 
   // MAX_CALLS is used to prevent an infinite loop of API calls
   // between the two chatbots
@@ -32,7 +33,7 @@ function GenAI() {
   let apiCallCounter = 0;
 
   useEffect(() => {
-    handleSocratesCall(socratesBackground.welcome);
+    handleSocratesCall(socratesPersona.introduction);
   }, []);
 
   // Takes user input and calls the API for Socrates's response
@@ -48,23 +49,27 @@ function GenAI() {
     console.log("Socrates API Call Counter after call && increment: ", apiCallCounter);
 
     if (response) {
-      handleAlexCall(response);
+      handleNietzscheCall(response);
     }
     setSocratesUserInput("");
   };
 
-  // Takes user input and calls the API for Alex's response
-  const handleAlexCall = async (message) => {
-    console.log("Alex's received message: ", message);
-    let response = await mistralAPI(message, setAlexMessage, setIsAlexData);
+  // Takes user input and calls the API for Nietzsche's response
+  const handleNietzscheCall = async (message) => {
+    console.log("Nietzsches's received message: ", message);
+    if (isFirstIntro) {
+      message += nietzschePersona.introduction;
+      setIsFirstIntro(false);
+    }
+    let response = await mistralAPI(message, setNietzscheMessage, setIsNietzscheData);
     if (apiCallCounter === MAX_CALLS) return;
     ++apiCallCounter;
-    console.log("Alex API Call Counter after call && increment: ", apiCallCounter);
+    console.log("Nietzsche API Call Counter after call && increment: ", apiCallCounter);
 
     if (response) {
       handleSocratesCall(response);
     }
-    setAlexUserInput("");
+    setNietzscheUserInput("");
   };
 
   return (
@@ -78,17 +83,17 @@ function GenAI() {
             formValue={SocratesUserInput}
             handleInputSubmit={handleSocratesCall}
             setFormValue={setSocratesUserInput}
-            initialMessage={socratesBackground.welcome}></Messages>
+            initialMessage={socratesPersona.introduction}></Messages>
         </div>
-        <div className="alex-container text-center">
-          <h1 className="Socrates-title">Alex</h1>
+        <div className="nietzsche-container text-center">
+          <h1 className="Socrates-title">Nietzsche</h1>
           <Messages
-            isData={isAlexData}
-            messageHistory={alexMessage}
-            formValue={alexUserInput}
-            handleInputSubmit={handleAlexCall}
-            setFormValue={setAlexUserInput}
-            initialMessage={alexBackground.welcome}></Messages>
+            isData={isNietzscheData}
+            messageHistory={nietzscheMessage}
+            formValue={nietzscheUserInput}
+            handleInputSubmit={handleNietzscheCall}
+            setFormValue={setNietzscheUserInput}
+            initialMessage={nietzschePersona.introduction}></Messages>
         </div>
       </div>
     </>
