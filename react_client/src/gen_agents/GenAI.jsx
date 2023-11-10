@@ -35,11 +35,15 @@ function GenAI() {
   // Takes user input and calls the API for Isabella's response
   const handleIsabellaCall = async (message) => {
     console.log("Message to Isabella: ", message);
-    let response = await zephyrAPI(message, setIsabellaMessage, setisIsabellaData);
+    let response = await zephyrAPI(
+      message,
+      setIsabellaMessage,
+      setisIsabellaData
+    );
     setApiCallCounter(apiCallCounter + 1);
 
     if (response && apiCallCounter < 5) {
-      console.log("Response from Isabella API Call: ", response)
+      console.log("Response from Isabella API Call: ", response);
       handleAlexCall(response);
     }
     setIsabellaUserInput("");
@@ -52,7 +56,7 @@ function GenAI() {
     setApiCallCounter(apiCallCounter + 1);
 
     if (response && apiCallCounter < 5) {
-      console.log("Response from Alex API Call: ", response)
+      console.log("Response from Alex API Call: ", response);
       handleIsabellaCall(response);
     }
     setAlexUserInput("");
