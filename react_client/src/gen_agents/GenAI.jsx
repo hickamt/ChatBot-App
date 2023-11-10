@@ -9,62 +9,60 @@ import { useState, useEffect } from "react";
 // The Messages component will be used by both chatbots
 import Messages from "../components/messages/Messages";
 
-// Isabella will use the ZephyrAPI to generate responses for Alex
+// Socrates will use the ZephyrAPI to generate responses for Alex
 import zephyrAPI from "../api/zephyrAPI";
-import { isabellaBackground } from "./personas/Isabella";
+import { socratesBackground } from "./personas/Socrates";
 
-// Alex will use the MystralAI API to generate responses for Isabella
+// Alex will use the MystralAI API to generate responses for Socrates
 import mistralAPI from "../api/mistralAPI";
 import { alexBackground } from "./personas/Alex";
 
 function GenAI() {
-  const [isIsabellaData, setisIsabellaData] = useState(false); // This is used to determine whether to display the chatbot response
-  const [isabellaMessage, setIsabellaMessage] = useState([]); // This is used to store the chatbot response
-  const [isabellaUserInput, setIsabellaUserInput] = useState(""); // user input
+  const [isSocratesData, setisSocratesData] = useState(false); // This is used to determine whether to display the chatbot response
+  const [SocratesMessage, setSocratesMessage] = useState([]); // This is used to store the chatbot response
+  const [SocratesUserInput, setSocratesUserInput] = useState(""); // user input
 
   const [isAlexData, setIsAlexData] = useState(false); // This is used to determine whether to display the chatbot response
   const [alexMessage, setAlexMessage] = useState([]); // This is used to store the chatbot response
   const [alexUserInput, setAlexUserInput] = useState(""); // user input
 
-  // const [apiCallCounter, setApiCallCounter] = useState(0);
+  // MAX_CALLS is used to prevent an infinite loop of API calls
+  // between the two chatbots
+  const MAX_CALLS = 5;
   let apiCallCounter = 0;
 
   useEffect(() => {
-    handleIsabellaCall(isabellaBackground.welcome);
+    handleSocratesCall(socratesBackground.welcome);
   }, []);
 
-  // Takes user input and calls the API for Isabella's response
-  const handleIsabellaCall = async (message) => {
-    console.log("Message to Isabella: ", message);
+  // Takes user input and calls the API for Socrates's response
+  const handleSocratesCall = async (message) => {
+    console.log("Socrates's received message: ", message);
     let response = await zephyrAPI(
       message,
-      setIsabellaMessage,
-      setisIsabellaData
+      setSocratesMessage,
+      setisSocratesData
     );
-
-    // setApiCallCounter(prev => prev + 1);
+    if (apiCallCounter === MAX_CALLS) return;
     ++apiCallCounter;
-    console.log("API Call Counter: ", apiCallCounter);
-    if (apiCallCounter === 5) return;
+    console.log("Socrates API Call Counter after call && increment: ", apiCallCounter);
 
     if (response) {
-      console.log("Response from Isabella API Call: ", response);
       handleAlexCall(response);
     }
-    setIsabellaUserInput("");
+    setSocratesUserInput("");
   };
 
   // Takes user input and calls the API for Alex's response
   const handleAlexCall = async (message) => {
-    console.log("Message to Alex: ", message);
+    console.log("Alex's received message: ", message);
     let response = await mistralAPI(message, setAlexMessage, setIsAlexData);
-    // setApiCallCounter(prev => prev + 1);
+    if (apiCallCounter === MAX_CALLS) return;
     ++apiCallCounter;
-    console.log("Response from Alex API Call: ", response);
-    if (apiCallCounter === 5) return;
+    console.log("Alex API Call Counter after call && increment: ", apiCallCounter);
 
     if (response) {
-      handleIsabellaCall(response);
+      handleSocratesCall(response);
     }
     setAlexUserInput("");
   };
@@ -72,18 +70,18 @@ function GenAI() {
   return (
     <>
       <div className="message-main d-flex justify-content-center">
-        <div className="isabella-container text-center">
-          <h1 className="isabella-title">Isabella</h1>
+        <div className="Socrates-container text-center">
+          <h1 className="Socrates-title">Socrates</h1>
           <Messages
-            isData={isIsabellaData}
-            messageHistory={isabellaMessage}
-            formValue={isabellaUserInput}
-            handleInputSubmit={handleIsabellaCall}
-            setFormValue={setIsabellaUserInput}
-            initialMessage={isabellaBackground.welcome}></Messages>
+            isData={isSocratesData}
+            messageHistory={SocratesMessage}
+            formValue={SocratesUserInput}
+            handleInputSubmit={handleSocratesCall}
+            setFormValue={setSocratesUserInput}
+            initialMessage={socratesBackground.welcome}></Messages>
         </div>
         <div className="alex-container text-center">
-          <h1 className="isabella-title">Alex</h1>
+          <h1 className="Socrates-title">Alex</h1>
           <Messages
             isData={isAlexData}
             messageHistory={alexMessage}

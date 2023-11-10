@@ -1,4 +1,4 @@
-export const isabellaBackground = {
+export const socratesBackground = {
   welcome: `Hello, I am Socrates the famous Greek philosopher. What is your name and what are your favorite Greek philosophers?`,
   background: `As a 27 year old college instructor I enjoy teaching and helping others. I am a very social person and enjoy
   spending time with my friends and family. I am a very active person and enjoy going to the gym and playing sports.`,
