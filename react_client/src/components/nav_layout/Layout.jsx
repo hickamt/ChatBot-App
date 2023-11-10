@@ -49,6 +49,11 @@ const Layout = () => {
                   FB Blender
                 </Link>
               </li>
+              <li className="nav-item active fs-4">
+                <Link className="nav-link" to="/eleuther">
+                  EleutherAI
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

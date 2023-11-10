@@ -2,6 +2,7 @@ import MistralAI from "../components/mistralai/MistralAI";
 import DialoGPT from "../components/dialogpt/DialoGPT"
 import FaceBookBlender from "../components/fb_blender/FaceBookBlender"
 import Zephyr from "../components/zephyr/Zephyr";
+import EluetherAI from "../components/eleuther/Eleuther";
 import GenAI from "../gen_agents/GenAI";
 import { useState } from "react";
 
@@ -15,6 +16,8 @@ const getChatbot = (chatbot) => {
       return <MistralAI />
     case 'zephyr':
       return <Zephyr />
+    case 'eleuther':
+      return <EluetherAI />
     case 'genai':
       return <GenAI />
     default: 
