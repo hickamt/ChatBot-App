@@ -26,7 +26,8 @@ function GenAI() {
   const [alexMessage, setAlexMessage] = useState([]); // This is used to store the chatbot response
   const [alexUserInput, setAlexUserInput] = useState(""); // user input
 
-  const [apiCallCounter, setApiCallCounter] = useState(0);
+  // const [apiCallCounter, setApiCallCounter] = useState(0);
+  let apiCallCounter = 0;
 
   useEffect(() => {
     handleIsabellaCall(isabellaBackground.welcome);
@@ -40,9 +41,13 @@ function GenAI() {
       setIsabellaMessage,
       setisIsabellaData
     );
-    setApiCallCounter(apiCallCounter + 1);
 
-    if (response && apiCallCounter < 5) {
+    // setApiCallCounter(prev => prev + 1);
+    ++apiCallCounter;
+    console.log("API Call Counter: ", apiCallCounter);
+    if (apiCallCounter === 5) return;
+
+    if (response) {
       console.log("Response from Isabella API Call: ", response);
       handleAlexCall(response);
     }
@@ -53,10 +58,12 @@ function GenAI() {
   const handleAlexCall = async (message) => {
     console.log("Message to Alex: ", message);
     let response = await mistralAPI(message, setAlexMessage, setIsAlexData);
-    setApiCallCounter(apiCallCounter + 1);
+    // setApiCallCounter(prev => prev + 1);
+    ++apiCallCounter;
+    console.log("Response from Alex API Call: ", response);
+    if (apiCallCounter === 5) return;
 
-    if (response && apiCallCounter < 5) {
-      console.log("Response from Alex API Call: ", response);
+    if (response) {
       handleIsabellaCall(response);
     }
     setAlexUserInput("");
