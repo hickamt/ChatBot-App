@@ -4,7 +4,7 @@
  * The first chatbot will be MistralAI and the second chatbot
  * will be Zephyr
  */
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // The Messages component will be used by both chatbots
 import Messages from "../components/messages/Messages";
@@ -26,43 +26,35 @@ function GenAI() {
   const [alexMessage, setAlexMessage] = useState([]); // This is used to store the chatbot response
   const [alexUserInput, setAlexUserInput] = useState(""); // user input
 
-  const intervalId = useRef(null);
+  const [apiCallCounter, setApiCallCounter] = useState(0);
 
   useEffect(() => {
     handleIsabellaCall(isabellaBackground.welcome);
-
-    return () => {
-      if (intervalId.current) {
-        clearInterval(intervalId.current);
-      }
-    };
   }, []);
 
   // Takes user input and calls the API for Isabella's response
-  const handleIsabellaCall = async (input) => {
-    // e.preventDefault();
-    await zephyrAPI(input, setIsabellaMessage, setisIsabellaData);
-    if (intervalId.current) {
-      clearInterval(intervalId.current);
-    }
+  const handleIsabellaCall = async (message) => {
+    console.log("Message to Isabella: ", message);
+    let response = await zephyrAPI(message, setIsabellaMessage, setisIsabellaData);
+    setApiCallCounter(apiCallCounter + 1);
 
-    intervalId.current = setInterval(() => {
-      handleAlexCall(isabellaMessage);
-    }, 5000);
+    if (response && apiCallCounter < 5) {
+      console.log("Response from Isabella API Call: ", response)
+      handleAlexCall(response);
+    }
     setIsabellaUserInput("");
   };
 
   // Takes user input and calls the API for Alex's response
-  const handleAlexCall = async (input) => {
-    // e.preventDefault();
-    await mistralAPI(input, setAlexMessage, setIsAlexData);
-    if (intervalId.current) {
-      clearInterval(intervalId.current);
-    }
+  const handleAlexCall = async (message) => {
+    console.log("Message to Alex: ", message);
+    let response = await mistralAPI(message, setAlexMessage, setIsAlexData);
+    setApiCallCounter(apiCallCounter + 1);
 
-    intervalId.current = setInterval(() => {
-      handleIsabellaCall(alexMessage);
-    }, 5000);
+    if (response && apiCallCounter < 5) {
+      console.log("Response from Alex API Call: ", response)
+      handleIsabellaCall(response);
+    }
     setAlexUserInput("");
   };
 

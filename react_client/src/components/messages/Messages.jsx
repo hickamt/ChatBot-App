@@ -13,7 +13,7 @@ const ChatMessage = function CreateChatMessage({
       <div
         className={`message ${classtitle} justify-content-end`}
         // ref={messageHistory && index === messageHistory.length - 1 ? refProps : null}
-        >
+      >
         <p className={`message-text ${classtitle}`}>{text}</p>
       </div>
     </>
@@ -31,7 +31,7 @@ const filterClassName = function filterIndexForUserOrChatbotClassName(index) {
 };
 
 const Messages = function TextMessageField({
-  refProps,
+  // refProps,
   isData,
   messageHistory,
   formValue,

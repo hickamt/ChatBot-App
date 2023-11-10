@@ -21,6 +21,7 @@ async function zephyrAPI(prompt, setMessageHistory, setIsData) {
     console.log("Client Side Response.Data: ", response.data);
     setMessageHistory((prev) => [...prev, prompt, response.data]);
     setIsData(true);
+    return response.data;
   } catch (error) {
     console.error(
       `Error: unable to fetch prompt: "${prompt}" from the Zephyr Server`,

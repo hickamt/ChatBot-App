@@ -20,6 +20,7 @@ async function dialoAPI(prompt, setMessageHistory, setIsData) {
     });
     setMessageHistory((prev) => [...prev, prompt, response.data.generated_text]);
     setIsData(true);
+    return response.data.generated_text;
   } catch (error) {
     console.error(`Error: unable to fetch ${prompt} from the DialoAPI Server`, error);
     setMessageHistory((prev) => [...prev, prompt, "That didn't go as planned. Maybe my server is down."])

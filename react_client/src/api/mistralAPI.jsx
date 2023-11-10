@@ -22,6 +22,7 @@ async function mistralAPI(prompt, setMessageHistory, setIsData) {
     console.log("Client Side Response.Data: ", response.data)
     setMessageHistory((prev) => [...prev, prompt, response.data]);
     setIsData(true);
+    return response.data;
   } catch (error) {
     console.error(`Error: unable to fetch prompt: "${prompt}" from the MistralAI Server`, error);
     setMessageHistory((prev) => [...prev, prompt, "That didn't go as planned. Maybe my server is down."])
