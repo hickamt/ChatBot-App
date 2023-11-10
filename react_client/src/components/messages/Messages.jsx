@@ -1,10 +1,19 @@
 import "../../styles/messages.css";
 
 // eslint-disable-next-line react/prop-types
-const ChatMessage = function CreateChatMessage({ text, classtitle }) {
+const ChatMessage = function CreateChatMessage({
+  text,
+  classtitle,
+  // refProps,
+  // messageHistory,
+  // index,
+}) {
   return (
     <>
-      <div className={`message ${classtitle} justify-content-end`}>
+      <div
+        className={`message ${classtitle} justify-content-end`}
+        // ref={messageHistory && index === messageHistory.length - 1 ? refProps : null}
+        >
         <p className={`message-text ${classtitle}`}>{text}</p>
       </div>
     </>
@@ -22,6 +31,7 @@ const filterClassName = function filterIndexForUserOrChatbotClassName(index) {
 };
 
 const Messages = function TextMessageField({
+  refProps,
   isData,
   messageHistory,
   formValue,
@@ -42,6 +52,9 @@ const Messages = function TextMessageField({
                   key={index}
                   text={msg}
                   classtitle={filterClassName(index)}
+                  // refProps={refProps}
+                  // messageHistory={messageHistory}
+                  // index={index}
                 />
               ))}
           </div>

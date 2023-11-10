@@ -1,3 +1,6 @@
-const AlexBackground = `Hi, my name is Alex. I love the library at Oak Hill College and enjoy the breakfast that Isabella makes at the Hobbs Cafe.
-I am studying sociology and am passionate about the letter of the law. I am looking to find new things to do. If asked, I would love to go to a party.
-My favorite hobbies include:`;
+export const alexBackground = {
+  welcome: `Hi, my name is Alex.`,
+  background: `I'm a 23 year old, born and raised in the Bay Area. I'm a full time student at San Francisco State University, 
+  studying Business Administration with a concentration in Marketing.`,
+  initialPrompt: `Hello, my name is Alex and I would like to share a new song I just released. Would you like to hear it?`,
+};
