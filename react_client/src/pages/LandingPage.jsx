@@ -5,6 +5,7 @@ import Zephyr from "../components/zephyr/Zephyr";
 import EluetherAI from "../components/eleuther/Eleuther";
 import GenAI from "../gen_agents/GenAI";
 import { useState } from "react";
+import HeroImage from "../gen_agents/Hero";
 
 const getChatbot = (chatbot) => {
   switch (chatbot) {
@@ -30,7 +31,8 @@ function Main() {
   return (
     <>
       <div className="landingpage-container mt-3 w-75">
-        <GenAI />
+        {/* <GenAI /> */}
+        <HeroImage />
         {/* {chatBot} */}
         {/* <div className="dropdown">
           <button className="dropdown w-25">Select</button>
