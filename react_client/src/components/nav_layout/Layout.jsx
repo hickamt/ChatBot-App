@@ -35,6 +35,11 @@ const Layout = () => {
                 </Link>
               </li>
               <li className="nav-item active fs-4">
+                <Link className="nav-link fs-4" to="/eleuther">
+                  Eleuther
+                </Link>
+              </li>
+              <li className="nav-item active fs-4">
                 <Link className="nav-link" to="/mistralai">
                   MistralAI
                 </Link>
