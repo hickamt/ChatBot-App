@@ -2,7 +2,7 @@ import MistralAI from "../components/mistralai/MistralAI";
 import DialoGPT from "../components/dialogpt/DialoGPT"
 import FaceBookBlender from "../components/fb_blender/FaceBookBlender"
 import Zephyr from "../components/zephyr/Zephyr";
-import Eleuther from "../components/eleuther/Eleuther";
+import EleutherAI from "../components/eleuther/EleutherAI";
 import { useState } from "react";
 
 // getChatBot is an idea that will allow a single page view
@@ -12,16 +12,16 @@ const getChatbot = (chatbot) => {
   switch (chatbot) {
     case 'dialogpt':
       return <DialoGPT />
+    case 'eleuther':
+      return <EleutherAI />
     case 'fb_blender':
       return <FaceBookBlender />
     case 'mistralai':
       return <MistralAI />
-    case 'eleuther':
-      return <Eleuther />
     case 'zephyr':
       return <Zephyr />
     default: 
-      return <MistralAI />
+      return <EleutherAI />
   }
 }
 

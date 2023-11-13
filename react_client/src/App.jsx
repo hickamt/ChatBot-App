@@ -9,6 +9,7 @@ import DialoGPT from "./components/dialogpt/DialoGPT";
 import MistralAI from "./components/mistralai/MistralAI";
 import FaceBookBlender from "./components/fb_blender/FaceBookBlender";
 import Zephyr from "./components/zephyr/Zephyr";
+import EleutherAI from "./components/eleuther/EleutherAI";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Main />} />
           <Route path="dialogpt" element={<DialoGPT />} />
+          <Route path="eleuther" element={<EleutherAI />} />
           <Route path="mistralai" element={<MistralAI />} />
           <Route path="fb_blender" element={<FaceBookBlender />} />
           <Route path="zephyr" element={<Zephyr />} />
