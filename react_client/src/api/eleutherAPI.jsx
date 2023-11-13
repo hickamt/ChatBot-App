@@ -19,9 +19,11 @@ async function eleutherAPI(prompt, setMessageHistory, setIsData) {
       },
     });
     // console.log("Client Side Response.Data: ", response.data[0].generated_text);
+    if (response && response.data && response.data[0].generated_text) {
     setMessageHistory((prev) => [...prev, prompt, response.data[0].generated_text]);
     setIsData(true);
-    return response.data[0].generated_text;
+    }
+    // return response.data[0].generated_text;
   } catch (error) {
     console.error(`Error: unable to fetch ${prompt} from the Eleuther Server`, error);
     setMessageHistory((prev) => [...prev, prompt, "That didn't go as planned. Maybe my server is down."])
