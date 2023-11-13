@@ -27,7 +27,7 @@ const getChatbot = (chatbot) => {
 
 function Main() {
 
-  const [chatBot, setChatBot] = useState(<MistralAI />);
+  const [chatBot, setChatBot] = useState(<EleutherAI />);
   return (
     <>
       <div className="landingpage-container mt-3 w-75">
