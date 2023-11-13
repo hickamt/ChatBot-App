@@ -3,7 +3,10 @@ import DialoGPT from "../components/dialogpt/DialoGPT"
 import FaceBookBlender from "../components/fb_blender/FaceBookBlender"
 import { useState } from "react";
 
+// getChatBot is an idea that will allow a single page view
+// and the ability to select a chatbot from a dropdown menu
 const getChatbot = (chatbot) => {
+
   switch (chatbot) {
     case 'dialogpt':
       return <DialoGPT />
@@ -19,6 +22,7 @@ const getChatbot = (chatbot) => {
 }
 
 function Main() {
+
   const [chatBot, setChatBot] = useState(<MistralAI />);
   return (
     <>
