@@ -2,7 +2,7 @@ import MistralAI from "../components/mistralai/MistralAI";
 import DialoGPT from "../components/dialogpt/DialoGPT"
 import FaceBookBlender from "../components/fb_blender/FaceBookBlender"
 import Zephyr from "../components/zephyr/Zephyr";
-import EluetherAI from "../components/eleuther/Eleuther";
+import EluetherAI from "../components/eleuther/EleutherAI";
 import GenAI from "../gen_agents/GenAI";
 import { useState } from "react";
 
