@@ -1,6 +1,7 @@
 import MistralAI from "../components/mistralai/MistralAI";
 import DialoGPT from "../components/dialogpt/DialoGPT"
 import FaceBookBlender from "../components/fb_blender/FaceBookBlender"
+import Zephyr from "../components/zephyr/Zephyr";
 import { useState } from "react";
 
 // getChatBot is an idea that will allow a single page view

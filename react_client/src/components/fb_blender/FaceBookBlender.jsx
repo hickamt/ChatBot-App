@@ -3,20 +3,24 @@ import { blenderHistory } from "../../prompts/blender";
 import Messages from "../messages/Messages";
 import blenderAPI from "../../api/blenderAPI";
 import "../../styles/messages.css";
+import PageHeader from "../header/PageHeader";
 
 function FaceBookBlenderMessages() {
+  const [isLoading, setIsLoading] = useState(false); // This is used to determine whether to display the chatbot response
   const [isData, setIsData] = useState(false); // This is used to determine whether to display the chatbot response
   const [messageHistory, setMessageHistory] = useState([]); // This is used to store the chatbot response
   const [formValue, setFormValue] = useState(""); // user input
 
   const handleInputSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     await blenderAPI(formValue, setMessageHistory, setIsData);
+    setIsLoading(false);
     setFormValue("");
   };
   return (
     <>
-      <h1 className="message-title">FB Blender</h1>
+      <PageHeader title="FB Blender" isLoading={isLoading} />
       <div className="message-main">
         <Messages
           isData={isData}
@@ -24,7 +28,9 @@ function FaceBookBlenderMessages() {
           formValue={formValue}
           handleInputSubmit={handleInputSubmit}
           setFormValue={setFormValue}
-          initialMessage={blenderHistory}></Messages>
+          initialMessage={blenderHistory}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}></Messages>
       </div>
     </>
   );
