@@ -3,19 +3,23 @@ import { zephyrHistory } from "../../prompts/zephyr";
 import zephyrAPI from "../../api/zephyrAPI";
 import Messages from "../messages/Messages";
 import PageHeader from "../header/PageHeader";
+import SpeechToText from "../speech/TextToSpeech";
 
 function Zephyr() {
   const [isLoading, setIsLoading] = useState(false); // This is used to determine whether to display the chatbot response
   const [isData, setIsData] = useState(false); // This is used to determine whether to display the chatbot response
   const [messageHistory, setMessageHistory] = useState([]); // This is used to store the chatbot response
   const [formValue, setFormValue] = useState(""); // user input
+  const [textToSpeech, setTextToSpeech] = useState([]);
 
   const handleInputSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); 
-    await zephyrAPI(formValue, setMessageHistory, setIsData);
+    setIsLoading(true);
+    await zephyrAPI(formValue, setMessageHistory, setIsData, setTextToSpeech);
     setIsLoading(false);
     setFormValue("");
+    setTextToSpeech(messageHistory[-1])
+    // console.log("Zephyr Message History: ", messageHistory)
   };
 
   return (
@@ -32,6 +36,7 @@ function Zephyr() {
           isLoading={isLoading}
           setIsLoading={setIsLoading}></Messages>
       </div>
+      <SpeechToText message={messageHistory[messageHistory.lenght - 2]} />
     </>
   );
 }

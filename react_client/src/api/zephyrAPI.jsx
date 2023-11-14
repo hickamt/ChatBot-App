@@ -8,7 +8,7 @@ import axios from "axios";
  * @param {*} setIsData is a function to set the boolean value of whether data was returned from the server
  * @param {*} setAnimation is a function to set the boolean value of whether the animation should be displayed
  */
-async function zephyrAPI(prompt, setMessageHistory, setIsData) {
+async function zephyrAPI(prompt, setMessageHistory, setIsData, setTextToSpeech) {
   try {
     const response = await axios.post("http://localhost:5500/zephyr", {
       headers: {
@@ -18,8 +18,9 @@ async function zephyrAPI(prompt, setMessageHistory, setIsData) {
         query: prompt,
       },
     });
-    console.log("Client Side Response.Data: ", response.data);
+    // console.log("Client Side Response.Data: ", response.data);
     setMessageHistory((prev) => [...prev, prompt, response.data]);
+    // setTextToSpeech([...response.data]);
     setIsData(true);
   } catch (error) {
     console.error(

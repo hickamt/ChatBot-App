@@ -11,27 +11,23 @@ const voiceSelect = function getAllVoicesForSelection(voices) {
   return voiceSelection;
 };
 
-const SpeechToText = () => {
+const SpeechToText = ({message}) => {
   const speech = new SpeechSynthesisUtterance();
   const [voices, setVoices] = useState([]);
   const [rate, setRate] = useState(1);
   const [volume, setVolume] = useState(1);
   const [pitch, setPitch] = useState(1);
-  const [text, setText] = useState(
-    "Testing the ability to convert text to speech"
-  );
-
-  const availableVoices = () => {
-    console.log("Available Voices", voices);
-  };
+  const [text, setText] = useState([]);
 
   useEffect(() => {
+    console.log("Message: ", message)
+    setText(message)
     speech.lang = "en";
     window.speechSynthesis.onvoiceschanged = () => {
       const availableVoices = window.speechSynthesis.getVoices();
       if (availableVoices.length > 0) {
         setVoices(availableVoices);
-        speech.voice = availableVoices[0];
+        speech.voice = availableVoices[2];
       }
     };
   }, []);
@@ -73,18 +69,18 @@ const SpeechToText = () => {
   };
 
   return (
-    <div>
+    <div className="d-flex flex-column align-items-center justify-content-center">
       <p className="lead text-light mt-4">Select Voice</p>
 
       {/* <!-- Select Menu for Voice --> */}
       <select
         id="voices"
-        className="form-select bg-secondary text-light"
+        className="form-select bg-secondary text-light w-25"
         onChange={handleVoiceChange}>
         {voiceSelect(voices)}
       </select>
 
-      {/* <!-- Range Slliders for Volume, Rate & Pitch --> */}
+      {/* <!-- Range Sliders for Volume, Rate & Pitch --> */}
       <div className="d-flex mt-4 text-light">
         <div>
           <p className="lead">Volume</p>
@@ -134,11 +130,11 @@ const SpeechToText = () => {
       </div>
 
       {/* <!-- Text Area  for the User to Type --> */}
-      <textarea
+      {/* <textarea
         className="form-control bg-dark text-light mt-5"
         cols="30"
         rows="10"
-        placeholder="Type here..."></textarea>
+        placeholder="Type here..."></textarea> */}
 
       {/* <!-- Control Buttons --> */}
       <div className="mb-5">
