@@ -2,34 +2,34 @@ import React, { useState, useEffect } from "react";
 
 // This function is used to get all the voices available on the browser
 // and returns an array of options for the user to select from
-const voiceSelect = function getAllVoicesForSelection(voices) {
-  let voiceSelection = voices.map((voice, i) => (
-    <option key={i} value={i}>
-      {voice.name}
-    </option>
-  ));
+const voiceSelect = function getAllVoicesForSelection() {
+  let voiceSelection = [];
+  const availableVoices = window.speechSynthesis.getVoices();
+  if (availableVoices.length > 0) {
+    voiceSelection = availableVoices.map((voice, i) => (
+      <option key={i} value={i}>
+        {voice.name}
+      </option>
+    ));
+  }
   return voiceSelection;
 };
 
-const SpeechToText = ({message}) => {
+const SpeechToText = ({ message }) => {
   const speech = new SpeechSynthesisUtterance();
   const [voices, setVoices] = useState([]);
   const [rate, setRate] = useState(1);
   const [volume, setVolume] = useState(1);
   const [pitch, setPitch] = useState(1);
-  const [text, setText] = useState([]);
+  const [text, setText] = useState("");
 
   useEffect(() => {
-    console.log("Message: ", message)
-    setText(message)
     speech.lang = "en";
-    window.speechSynthesis.onvoiceschanged = () => {
-      const availableVoices = window.speechSynthesis.getVoices();
-      if (availableVoices.length > 0) {
-        setVoices(availableVoices);
-        speech.voice = availableVoices[2];
-      }
-    };
+    const availableVoices = window.speechSynthesis.getVoices();
+    if (availableVoices.length > 0) {
+      setVoices(availableVoices);
+      speech.voice = availableVoices[2];
+    }
   }, []);
 
   const handleRateChange = (e) => {
@@ -52,7 +52,7 @@ const SpeechToText = ({message}) => {
   };
 
   const handleStart = () => {
-    speech.text = text;
+    speech.text = message;
     window.speechSynthesis.speak(speech);
   };
 
@@ -77,7 +77,7 @@ const SpeechToText = ({message}) => {
         id="voices"
         className="form-select bg-secondary text-light w-25"
         onChange={handleVoiceChange}>
-        {voiceSelect(voices)}
+        {voiceSelect()}
       </select>
 
       {/* <!-- Range Sliders for Volume, Rate & Pitch --> */}
