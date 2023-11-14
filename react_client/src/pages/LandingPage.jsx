@@ -33,10 +33,6 @@ function Main() {
     <>
       <div className="landingpage-container mt-3 w-75">
         {chatBot}
-        <TextToSpeech />
-        {/* <div className="dropdown">
-          <button className="dropdown w-25">Select</button>
-        </div> */}
       </div>
     </>
   );

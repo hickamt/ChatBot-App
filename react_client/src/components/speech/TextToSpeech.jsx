@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 // This function is used to get all the voices available on the browser
 // and returns an array of options for the user to select from
-const voiceSelect = function getAllVoicesForSelection() {
+const setAvailableVoices = function getAllVoicesForSelection() {
   let voiceSelection = [];
   const availableVoices = window.speechSynthesis.getVoices();
   if (availableVoices.length > 0) {
@@ -18,41 +18,49 @@ const voiceSelect = function getAllVoicesForSelection() {
 const SpeechToText = ({ message }) => {
   const speech = new SpeechSynthesisUtterance();
   const [voices, setVoices] = useState([]);
-  const [rate, setRate] = useState(1);
-  const [volume, setVolume] = useState(1);
-  const [pitch, setPitch] = useState(1);
-  const [text, setText] = useState("");
+  // const [voice, setVoice] = useState(""); // voices[0]
+  // const [rate, setRate] = useState(1);
+  // const [volume, setVolume] = useState(1);
+  // const [pitch, setPitch] = useState(1);
+
 
   useEffect(() => {
-    speech.lang = "en";
     const availableVoices = window.speechSynthesis.getVoices();
-    if (availableVoices.length > 0) {
+    if (availableVoices && availableVoices.length > 0) {
       setVoices(availableVoices);
-      speech.voice = availableVoices[2];
+      speech.voice = availableVoices[0];
     }
+    // initializeSpeech();
   }, []);
 
-  const handleRateChange = (e) => {
-    setRate(e.target.value);
-    speech.rate = e.target.value;
-  };
+  // const handleRateChange = (e) => {
+  //   console.log("rate value: ", e.target.value);
+  //   setRate(e.target.value);
+  //   speech.rate = e.target.value;
+  //   initializeSpeech();
+  // };
 
-  const handleVolumeChange = (e) => {
-    setVolume(e.target.value);
-    speech.volume = e.target.value;
-  };
+  // const handleVolumeChange = (e) => {
+  //   console.log("volume value: ", e.target.value);
+  //   setVolume(e.target.value);
+  //   speech.volume = e.target.value;
+  //   initializeSpeech();
+  // };
 
-  const handlePitchChange = (e) => {
-    setPitch(e.target.value);
-    speech.pitch = e.target.value;
-  };
+  // const handlePitchChange = (e) => {
+  //   console.log("pitch value: ", e.target.value);
+  //   setPitch(e.target.value);
+  //   speech.pitch = e.target.value;
+  //   initializeSpeech();
+  // };
 
   const handleVoiceChange = (e) => {
     speech.voice = voices[e.target.value];
+    console.log("voice: ", voices[e.target.value]);
   };
 
   const handleStart = () => {
-    speech.text = message;
+    speech.text = message ? message : "Please type something to speak";
     window.speechSynthesis.speak(speech);
   };
 
@@ -77,11 +85,11 @@ const SpeechToText = ({ message }) => {
         id="voices"
         className="form-select bg-secondary text-light w-25"
         onChange={handleVoiceChange}>
-        {voiceSelect()}
+        {setAvailableVoices()}
       </select>
 
       {/* <!-- Range Sliders for Volume, Rate & Pitch --> */}
-      <div className="d-flex mt-4 text-light">
+      {/* <div className="d-flex mt-4 text-light">
         <div>
           <p className="lead">Volume</p>
           <input
@@ -127,7 +135,7 @@ const SpeechToText = ({ message }) => {
             {pitch}
           </span>
         </div>
-      </div>
+      </div> */}
 
       {/* <!-- Text Area  for the User to Type --> */}
       {/* <textarea
