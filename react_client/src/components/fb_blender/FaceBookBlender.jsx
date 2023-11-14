@@ -4,6 +4,7 @@ import Messages from "../messages/Messages";
 import blenderAPI from "../../api/blenderAPI";
 import "../../styles/messages.css";
 import PageHeader from "../header/PageHeader";
+import SpeechToText from "../speech/TextToSpeech";
 
 function FaceBookBlenderMessages() {
   const [isLoading, setIsLoading] = useState(false); // This is used to determine whether to display the chatbot response
@@ -32,6 +33,7 @@ function FaceBookBlenderMessages() {
           isLoading={isLoading}
           setIsLoading={setIsLoading}></Messages>
       </div>
+      <SpeechToText message={messageHistory[messageHistory.length - 1]} />
     </>
   );
 }

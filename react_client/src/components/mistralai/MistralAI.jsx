@@ -3,6 +3,7 @@ import { mistralHistory } from "../../prompts/mistralai";
 import Messages from "../messages/Messages";
 import mistralAPI from "../../api/mistralAPI";
 import PageHeader from "../header/PageHeader";
+import SpeechToText from "../speech/TextToSpeech";
 
 function MistralAI() {
   const [isLoading, setIsLoading] = useState(false); // This is used to determine whether to display the chatbot response
@@ -32,6 +33,7 @@ function MistralAI() {
           isLoading={isLoading}
           setIsLoading={setIsLoading}></Messages>
       </div>
+      <SpeechToText message={messageHistory[messageHistory.length - 1]} />
     </>
   );
 }

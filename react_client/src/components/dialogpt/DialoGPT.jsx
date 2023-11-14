@@ -4,6 +4,7 @@ import Messages from "../messages/Messages";
 import dialoAPI from "../../api/dialoAPI";
 import PageHeader from "../header/PageHeader";
 import "../../styles/messages.css";
+import SpeechToText from "../speech/TextToSpeech";
 
 function DialoGPT() {
   const [isLoading, setIsLoading] = useState(false); // This is used to determine whether to display the chatbot response
@@ -31,6 +32,7 @@ function DialoGPT() {
           setFormValue={setFormValue}
           initialMessage={dialoHistory}></Messages>
       </div>
+      <SpeechToText message={messageHistory[messageHistory.length - 1]} />
     </>
   );
 }

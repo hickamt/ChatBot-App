@@ -78,12 +78,12 @@ const SpeechToText = ({ message }) => {
 
   return (
     <div className="d-flex flex-column align-items-center justify-content-center">
-      <p className="lead text-light mt-4">Select Voice</p>
+      <p className="lead text-light mt-4 fs-3">Select A Voice</p>
 
       {/* <!-- Select Menu for Voice --> */}
       <select
         id="voices"
-        className="form-select bg-secondary text-light w-25"
+        className="form-select bg-secondary text-light w-50"
         onChange={handleVoiceChange}>
         {setAvailableVoices()}
       </select>

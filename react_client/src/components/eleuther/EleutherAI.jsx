@@ -3,6 +3,7 @@ import { eleutherHistory } from "../../prompts/eleuther";
 import Messages from "../messages/Messages";
 import eleutherAPI from "../../api/eleutherAPI";
 import PageHeader from "../header/PageHeader";
+import SpeechToText from "../speech/TextToSpeech";
 
 function EleutherAI() {
   const [isLoading, setIsLoading] = useState(false); // This is used to determine whether to display the chatbot response
@@ -30,6 +31,7 @@ function EleutherAI() {
           setFormValue={setFormValue}
           initialMessage={eleutherHistory}></Messages>
       </div>
+      <SpeechToText message={messageHistory[messageHistory.length - 1]} />
     </>
   );
 }
