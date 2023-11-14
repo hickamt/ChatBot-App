@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from "react";
 
+// This function is used to get all the voices available on the browser
+// and returns an array of options for the user to select from
+const voiceSelect = function getAllVoicesForSelection(voices) {
+  let voiceSelection = voices.map((voice, i) => (
+    <option key={i} value={i}>
+      {voice.name}
+    </option>
+  ));
+  return voiceSelection;
+};
+
 const SpeechToText = () => {
-  const [speech, setSpeech] = useState(new SpeechSynthesisUtterance());
+  const speech = new SpeechSynthesisUtterance();
   const [voices, setVoices] = useState([]);
   const [rate, setRate] = useState(1);
   const [volume, setVolume] = useState(1);
@@ -10,12 +21,18 @@ const SpeechToText = () => {
     "Testing the ability to convert text to speech"
   );
 
+  const availableVoices = () => {
+    console.log("Available Voices", voices);
+  };
+
   useEffect(() => {
     speech.lang = "en";
     window.speechSynthesis.onvoiceschanged = () => {
       const availableVoices = window.speechSynthesis.getVoices();
-      setVoices(availableVoices);
-      speech.voice = availableVoices[0];
+      if (availableVoices.length > 0) {
+        setVoices(availableVoices);
+        speech.voice = availableVoices[0];
+      }
     };
   }, []);
 
@@ -57,93 +74,95 @@ const SpeechToText = () => {
 
   return (
     <div>
-      <p class="lead text-light mt-4">Select Voice</p>
+      <p className="lead text-light mt-4">Select Voice</p>
 
       {/* <!-- Select Menu for Voice --> */}
       <select
         id="voices"
-        class="form-select bg-secondary text-light"
-        onChange={handleVoiceChange}></select>
+        className="form-select bg-secondary text-light"
+        onChange={handleVoiceChange}>
+        {voiceSelect(voices)}
+      </select>
 
       {/* <!-- Range Slliders for Volume, Rate & Pitch --> */}
-      <div class="d-flex mt-4 text-light">
+      <div className="d-flex mt-4 text-light">
         <div>
-          <p class="lead">Volume</p>
+          <p className="lead">Volume</p>
           <input
             type="range"
             min="0"
             max="1"
-            value="1"
+            value={volume}
             step="0.1"
             id="volume"
             onChange={handleVolumeChange}
           />
-          <span id="volume-label" class="ms-2">
-            1
+          <span id="volume-label" className="ms-2">
+            {volume}
           </span>
         </div>
-        <div class="mx-5">
-          <p class="lead">Rate</p>
+        <div className="mx-5">
+          <p className="lead">Rate</p>
           <input
             type="range"
             min="0.1"
             max="10"
-            value="1"
+            value={rate}
             id="rate"
             step="0.1"
             onChange={handleRateChange}
           />
-          <span id="rate-label" class="ms-2">
-            1
+          <span id="rate-label" className="ms-2">
+            {rate}
           </span>
         </div>
         <div>
-          <p class="lead">Pitch</p>
+          <p className="lead">Pitch</p>
           <input
             type="range"
             min="0"
             max="2"
-            value="1"
+            value={pitch}
             step="0.1"
             id="pitch"
             onChange={handlePitchChange}
           />
-          <span id="pitch-label" class="ms-2">
-            1
+          <span id="pitch-label" className="ms-2">
+            {pitch}
           </span>
         </div>
       </div>
 
       {/* <!-- Text Area  for the User to Type --> */}
       <textarea
-        class="form-control bg-dark text-light mt-5"
+        className="form-control bg-dark text-light mt-5"
         cols="30"
         rows="10"
         placeholder="Type here..."></textarea>
 
       {/* <!-- Control Buttons --> */}
-      <div class="mb-5">
+      <div className="mb-5">
         <button
           id="start"
-          class="btn btn-success mt-5 me-3"
+          className="btn btn-success mt-5 me-3"
           onClick={handleStart}>
           Start
         </button>
         <button
           id="pause"
-          class="btn btn-warning mt-5 me-3"
+          className="btn btn-warning mt-5 me-3"
           onClick={handlePause}>
           Pause
         </button>
         <button
           id="resume"
-          class="btn btn-info mt-5 me-3"
+          className="btn btn-info mt-5 me-3"
           onClick={handleResume}>
           Resume
         </button>
         <button
           id="cancel"
-          class="btn btn-danger mt-5 me-3"
+          className="btn btn-danger mt-5 me-3"
           onClick={handleCancel}>
           Cancel
         </button>
