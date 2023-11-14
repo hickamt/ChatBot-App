@@ -3,6 +3,7 @@ import DialoGPT from "../components/dialogpt/DialoGPT"
 import FaceBookBlender from "../components/fb_blender/FaceBookBlender"
 import Zephyr from "../components/zephyr/Zephyr";
 import EleutherAI from "../components/eleuther/EleutherAI";
+import TextToSpeech from "../components/speech/TextToSpeech";
 import { useState } from "react";
 
 // getChatBot is an idea that will allow a single page view
@@ -32,6 +33,7 @@ function Main() {
     <>
       <div className="landingpage-container mt-3 w-75">
         {chatBot}
+        <TextToSpeech />
         {/* <div className="dropdown">
           <button className="dropdown w-25">Select</button>
         </div> */}
